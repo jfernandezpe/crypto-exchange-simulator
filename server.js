@@ -8,4 +8,4 @@ const root = path.resolve(__dirname);
 const app = express();
 app.use(express.static(`${root}/dist`));
 app.listen(port);
-console.log(`Listen at port ${port}`);
+console.log(`Server running at localhost:${port}`); /* eslint-disable-line */
