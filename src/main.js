@@ -6,7 +6,7 @@ import { VueI18n, i18nSetup } from '../lib/i18n';
 
 import App from './App.vue';
 import router from './router';
-import store from './store';
+import store from './store/index';
 import './registerServiceWorker';
 
 Vue.use(BootstrapVue);

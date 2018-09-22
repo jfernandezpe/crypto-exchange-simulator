@@ -1,14 +1,14 @@
 <template>
-  <div class="home">
-  </div>
+  <ExchangeInfo/>
 </template>
 
 <script>
-// @ is an alias to /src
+import ExchangeInfo from '@/components/ExchangeInfo.vue';
 
 export default {
   name: 'home',
   components: {
+    ExchangeInfo,
   },
 };
 </script>
