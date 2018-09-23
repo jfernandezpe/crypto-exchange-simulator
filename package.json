@@ -8,8 +8,8 @@
     "lint": "vue-cli-service lint",
     "start": "node server.js",
     "test": "vue-cli-service test:unit ./src/**/*.spec.js ./lib/**/*.spec.js",
-    "test:inspect": "node --inspect --inspect-brk node_modules/mocha-webpack/bin/mocha-webpack vue-cli-service test:unit --watch ./src/**/*.spec.js ./lib/**/*.spec.js --timeout 3600000",
-    "test:watch": "vue-cli-service test:unit --watch ./src/**/*.spec.js ./lib/**/*.spec.js"
+    "test:inspect": "node --inspect --inspect-brk node_modules/mocha-webpack/bin/mocha-webpack vue-cli-service test:unit --watch ./src/**/*.spec.js --timeout 3600000",
+    "test:watch": "vue-cli-service test:unit --watch ./src/**/*.spec.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

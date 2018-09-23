@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import pricesOfCoins from './pricesOfCoins.module';
+import pricesOfCoins from './pricesOfCoins/index';
 
 Vue.use(Vuex);
 
