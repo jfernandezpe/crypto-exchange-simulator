@@ -1,23 +1,30 @@
 import cesProvider from '@/lib/ces-provider/index';
 
-const objectToArray = (prices, referenceCurrency) => Object.keys(prices).map(name => ({
-  name,
-  price: prices[name],
+const crytoCurrencyObject = (shortname, coins, prices, referenceCurrency) => ({
+  shortname,
+  name: coins[shortname],
+  price: prices[shortname],
   currency: referenceCurrency,
-}));
+});
 
-const calcPriceBy = (referenceCurrencyPrice, coin) => Object.assign(
+const calcPriceBy = (referenceCurrencyPrice, coin) => referenceCurrencyPrice / coin.price;
+
+const coinWithPrice = (coin, referenceCurrencyPrice) => Object.assign(
   {},
-  coin, {
-    price: referenceCurrencyPrice / coin.price,
-  },
+  coin,
+  { price: calcPriceBy(referenceCurrencyPrice, coin) },
 );
 
+const coinIsReferenceCurrency = (coin, referenceCurrency) => coin.shortname === referenceCurrency;
 
-const parsePrices = (referenceCurrency, prices) => {
-  const pricesList = objectToArray(prices, referenceCurrency);
-  const calcPrices = pricesList.map(coin => calcPriceBy(prices[referenceCurrency], coin));
-  return calcPrices.filter(coin => coin.name !== referenceCurrency);
+
+const parsePrices = (referenceCurrency, prices, coins) => {
+  const calcPrices = Object.keys(prices)
+    .map(shortname => crytoCurrencyObject(shortname, coins, prices, referenceCurrency))
+    .filter(coin => !coinIsReferenceCurrency(coin, referenceCurrency))
+    .map(coin => coinWithPrice(coin, prices[referenceCurrency]));
+
+  return calcPrices;
 };
 
 
@@ -31,7 +38,8 @@ const fetchPrices = (referenceCurrency, coins) => {
     },
   };
 
-  return cesProvider.get(url, config).then(data => parsePrices(referenceCurrency, data.data));
+  return cesProvider.get(url, config)
+    .then(data => parsePrices(referenceCurrency, data.data, coins));
 };
 
 const provider = {

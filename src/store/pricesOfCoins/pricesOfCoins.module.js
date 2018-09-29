@@ -16,6 +16,10 @@ const initialState = {
     QTUM: 'QTUM',
     ZEC: 'ZCash',
   },
+  currency: {
+    shortname: 'EUR',
+    symbol: '€',
+  },
   prices: [],
   loading: false, /* This var is not used */
 };
@@ -25,10 +29,10 @@ const moduleState = Object.assign({}, initialState);
 const actions = {
   fetchExchangeInfo({
     commit,
-  }, coins) {
+  }, { currency, currencies }) {
     commit('loadingPricesOfCoins');
 
-    return provider.fetchPrices('EUR', coins)
+    return provider.fetchPrices(currency, currencies)
       .then((data) => {
         commit('pricesOfCoinsLoaded');
         commit('setPrices', data);
@@ -65,6 +69,9 @@ const getters = {
     currencies,
   }) {
     return Object.assign({}, currencies);
+  },
+  currency({ currency }) {
+    return Object.assign({}, currency);
   },
 };
 
