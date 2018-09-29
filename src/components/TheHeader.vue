@@ -4,13 +4,13 @@
 
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-      <b-navbar-brand href="#">{{ $t('the_header.brand')}}</b-navbar-brand>
+      <b-navbar-brand><router-link to="/">{{ $t('the_header.brand')}}</router-link></b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse">
 
         <b-navbar-nav>
           <b-nav-item>
-            <router-link to="/currency">{{ $t('the_header.home')}}</router-link>
+            <router-link to="/">{{ $t('the_header.home')}}</router-link>
           </b-nav-item>
           <b-nav-item>
             <router-link to="/about">{{ $t('the_header.about')}}</router-link>
