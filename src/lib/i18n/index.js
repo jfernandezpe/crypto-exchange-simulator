@@ -1,6 +1,9 @@
+import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 
 import messages from '../../assets/translations/index';
+
+Vue.use(VueI18n);
 
 const i18nSetup = () => new VueI18n({
   locale: 'es', // set locale
@@ -9,7 +12,4 @@ const i18nSetup = () => new VueI18n({
 });
 
 
-export {
-  VueI18n,
-  i18nSetup,
-};
+export default i18nSetup;
